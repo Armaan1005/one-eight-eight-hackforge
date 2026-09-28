@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+/* Apple Human Interface Guidelines system colors (iOS/macOS), light + dark. */
+:root {
+  color-scheme: light;
+  --bg: #f2f2f7;
+  --surface: #ffffff;
+  --surface-2: #f2f2f7;
+  --surface-glass: rgba(246, 246, 248, 0.72);
+  --label: #1d1d1f;
+  --label-2: rgba(60, 60, 67, 0.64);
+  --label-3: rgba(60, 60, 67, 0.36);
+  --separator: rgba(60, 60, 67, 0.13);
+  --fill: rgba(120, 120, 128, 0.12);
+  --fill-2: rgba(120, 120, 128, 0.2);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.04);
+  --code-bg: #1c1c1e;
+
+  --sys-blue: #007aff;
+  --sys-green: #34c759;
+  --sys-orange: #ff9500;
+  --sys-red: #ff3b30;
+  --sys-purple: #af52de;
+  --sys-indigo: #5856d6;
+  --sys-teal: #30b0c7;
+  --sys-pink: #ff2d55;
+  --sys-yellow: #ffcc00;
+  --sys-gray: #8e8e93;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-glass: var(--surface-glass);
+  --color-label: var(--label);
+  --color-label-2: var(--label-2);
+  --color-label-3: var(--label-3);
+  --color-separator: var(--separator);
+  --color-fill: var(--fill);
+  --color-fill-2: var(--fill-2);
+  --color-code: var(--code-bg);
+  --color-sys-blue: var(--sys-blue);
+  --color-sys-green: var(--sys-green);
+  --color-sys-orange: var(--sys-orange);
+  --color-sys-red: var(--sys-red);
+  --color-sys-purple: var(--sys-purple);
+  --color-sys-indigo: var(--sys-indigo);
+  --color-sys-teal: var(--sys-teal);
+  --color-sys-pink: var(--sys-pink);
+  --color-sys-yellow: var(--sys-yellow);
+  --color-sys-gray: var(--sys-gray);
+  --shadow-card: var(--shadow);
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Inter", "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--bg);
+  color: var(--label);
+  font-family: var(--font-sans);
+  font-feature-settings: "cv11", "ss01";
+  letter-spacing: -0.006em;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--sys-blue) 28%, transparent);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+input[type="range"] {
+  accent-color: var(--sys-blue);
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 color-mix(in oklab, currentColor 45%, transparent); }
+  100% { box-shadow: 0 0 0 7px transparent; }
+}
+.pulse-dot {
+  animation: pulse-ring 1.4s cubic-bezier(0.2, 0.6, 0.35, 1) infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, white 55%, transparent), transparent);
+  animation: shimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes flow-dash {
+  to { stroke-dashoffset: -16; }
+}
+.flow-dash {
+  stroke-dasharray: 4 4;
+  animation: flow-dash 0.8s linear infinite;
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(6px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+.rise-in {
+  animation: rise-in 0.32s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes banner-in {
+  from { opacity: 0; transform: translateY(-14px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+.banner-in {
+  animation: banner-in 0.38s cubic-bezier(0.2, 0.9, 0.25, 1.15) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

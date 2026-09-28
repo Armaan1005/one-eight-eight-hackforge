@@ -1,0 +1,57 @@
+@baseUrl = http://localhost:5080
+
+### List known job types
+GET {{baseUrl}}/api/jobs/types
+
+### Create a job that always succeeds
+POST {{baseUrl}}/api/jobs
+Content-Type: application/json
+
+{
+  "jobType": "SuccessfulJob"
+}
+
+### Create a job that fails twice then succeeds (demonstrates automatic recovery)
+POST {{baseUrl}}/api/jobs
+Content-Type: application/json
+
+{
+  "jobType": "FlakyJob",
+  "payload": { "failuresBeforeSuccess": 2 }
+}
+
+### Create a job that always fails, with a low retry cap (demonstrates dead-lettering quickly)
+POST {{baseUrl}}/api/jobs
+Content-Type: application/json
+
+{
+  "jobType": "AlwaysFailJob",
+  "maxRetries": 2
+}
+
+### List jobs (optionally filter by status / jobType)
+GET {{baseUrl}}/api/jobs?page=1&pageSize=20
+
+### List only dead-lettered jobs via the jobs endpoint
+GET {{baseUrl}}/api/jobs?status=DEAD_LETTER
+
+### Dashboard stats
+GET {{baseUrl}}/api/jobs/stats
+
+### Get one job's full detail (replace the id)
+GET {{baseUrl}}/api/jobs/00000000-0000-0000-0000-000000000000
+
+### Get one job's attempt history (replace the id)
+GET {{baseUrl}}/api/jobs/00000000-0000-0000-0000-000000000000/attempts
+
+### Cancel a queued/retrying job (replace the id)
+POST {{baseUrl}}/api/jobs/00000000-0000-0000-0000-000000000000/cancel
+
+### List dead-lettered jobs
+GET {{baseUrl}}/api/dead-letters
+
+### Get one dead-letter record (replace the id)
+GET {{baseUrl}}/api/dead-letters/00000000-0000-0000-0000-000000000000
+
+### Requeue a dead-lettered job as a brand-new job (replace the id)
+POST {{baseUrl}}/api/dead-letters/00000000-0000-0000-0000-000000000000/requeue

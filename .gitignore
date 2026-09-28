@@ -1,0 +1,19 @@
+# .NET
+backend/bin/
+backend/obj/
+backend.Tests/bin/
+backend.Tests/obj/
+backend/*.db
+backend/*.db-shm
+backend/*.db-wal
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+
+# Editor / OS
+.vs/
+.idea/
+.DS_Store
+*.user
