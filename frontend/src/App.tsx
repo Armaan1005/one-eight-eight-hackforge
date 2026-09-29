@@ -8,6 +8,7 @@ import { JobDetailsPage } from "./pages/JobDetailsPage";
 import { DeadLettersPage } from "./pages/DeadLettersPage";
 import { DeadLetterDetailsPage } from "./pages/DeadLetterDetailsPage";
 import { CreateJobPage } from "./pages/CreateJobPage";
+import { RealWorldPage } from "./pages/RealWorldPage";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
             <Route path="/dead-letters" element={<DeadLettersPage />} />
             <Route path="/dead-letters/:id" element={<DeadLetterDetailsPage />} />
             <Route path="/create" element={<CreateJobPage />} />
+            <Route path="/real-world" element={<RealWorldPage />} />
           </Routes>
         </MainLayout>
       </BrowserRouter>

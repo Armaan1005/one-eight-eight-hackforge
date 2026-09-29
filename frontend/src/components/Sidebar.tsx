@@ -8,6 +8,7 @@ export const NAV: { to: string; label: string; short: string; icon: IconName; to
   { to: "/jobs", label: "Jobs", short: "Jobs", icon: "list", tone: "bg-sys-indigo" },
   { to: "/dead-letters", label: "Dead Letters", short: "Dead", icon: "archive", tone: "bg-sys-red" },
   { to: "/create", label: "New Job", short: "New", icon: "plusCircle", tone: "bg-sys-green" },
+  { to: "/real-world", label: "Real-World Demo", short: "Payment", icon: "creditCard", tone: "bg-sys-orange" },
 ];
 
 export function AppMark({ className = "size-9" }: { className?: string }) {
